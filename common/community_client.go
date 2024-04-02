@@ -110,6 +110,7 @@ func NewMongoCommunityConn(url string, connectMode string, timeout bool, readCon
 	case ReadWriteConcernMajority:
 		clientOps.SetWriteConcern(writeconcern.New(writeconcern.WMajority()))
 	}
+	clientOps.SetWriteConcern(writeconcern.New(writeconcern.W(3), writeconcern.J(true)))
 
 	// read pref
 	readPreference := readpref.Primary()
